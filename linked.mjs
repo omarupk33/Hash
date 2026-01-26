@@ -119,18 +119,18 @@ export class LinkedList{
     }
 
     toString(){
-        let addToString = ''
+        let addString = ''
         if(!this.head){
          return ''
         }
         let tmp = this.head
         while(tmp){
-            addToString+= `( ${tmp.value} )-> `
+            addString+= `( ${tmp.value} )-> `
             tmp = tmp.next
         }
-        addToString+= 'null'
+        addString+= 'null'
     
-    return addToString
+    return addString
     }
     insertAt(index, ...values){
         if(index >= this.size() || index < 0){
@@ -195,5 +195,45 @@ export class LinkedList{
         }
         this.head.next = null
         return this.head
+    }
+
+    keys(){
+        let ls = []
+        if(!this.head){
+         return []
+        }
+        let tmp = this.head
+
+        while(tmp){
+            ls.push(tmp.key)
+            tmp = tmp.next
+        }
+    
+    return ls
+    }
+    values(){
+        let ls = []
+
+        if(!this.head){
+         return []
+        }
+
+        let tmp = this.head
+        while(tmp){
+            ls.push(tmp.value)
+            tmp = tmp.next
+        }
+
+    return ls
+    }
+    entries(){
+        let keys = this.keys()
+        let values = this.values()
+        let entries = []
+        for(let i = 0; i < keys.length;i++){
+            entries.push([`${keys[i]}`, ` ${values[i]}`])
+        }
+
+        return entries
     }
 }

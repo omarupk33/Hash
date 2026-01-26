@@ -84,17 +84,25 @@ function hash(key){
 
     function keys(){
       // Should only be the keys of the node idiot!!
-      return Object.keys(bucket)
+      let allKeys = []
+      for(let linkedList of Object.values(bucket)){
+        allKeys.push(...linkedList.keys())
+      }
+      return allKeys
     }
     function values(){
-      // Same here
-
-      return Object.values(bucket)
+      let allvalues = []
+      for(let linkedList of Object.values(bucket)){
+        allvalues.push(...linkedList.values())
+      }
+      return allvalues
     }
     function entries(){
-      // Same here
-
-      return Object.entries(bucket)
+      let allEntries = []
+      for(let linkedList of Object.values(bucket)){
+        allEntries.push(...linkedList.entries())
+      }
+      return allEntries
     }
 
    return {bucket, hashSet, has,removePair,
@@ -110,6 +118,8 @@ hashSet('rasa', 46)
 hashSet('mikey')
 
 // console.log(removePair('mikey'))
+console.log(keys())
 console.log(values())
-// console.log(bucket)
+console.log(entries())
+
 
