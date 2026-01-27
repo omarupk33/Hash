@@ -2,11 +2,13 @@ import {LinkedList} from "./linked.mjs"
 
 
 
-function hash_table(){
-  // need to update capacity when reaches 0.8 * capacity
-  let load_factor = 0.8
+export function HashMap(){
+
+  let load_factor = 0.75
   let capacity = 16
   let bucket = {}
+
+
 
 function hash(key){
   let hashCode = 0
@@ -18,6 +20,11 @@ function hash(key){
   return hashCode;
 } 
   function hashSet(key, value){
+
+      if(capacity * load_factor < length()){
+      capacity = capacity*2
+    }
+
     let linked = new LinkedList()
     linked.append(key, value)
 
@@ -83,7 +90,7 @@ function hash(key){
     }
 
     function keys(){
-      // Should only be the keys of the node idiot!!
+
       let allKeys = []
       for(let linkedList of Object.values(bucket)){
         allKeys.push(...linkedList.keys())
@@ -105,21 +112,7 @@ function hash(key){
       return allEntries
     }
 
-   return {bucket, hashSet, has,removePair,
+
+   return {bucket, hashSet, has,removePair, capacity,
           get, length, keys, values, entries, clear}
  }
-
-
- let {bucket, hashSet, has,removePair
-    ,get, length, keys, values, entries, clear} = hash_table()
-
-hashSet('sara', 76)
-hashSet('rasa', 46)
-hashSet('mikey')
-
-// console.log(removePair('mikey'))
-console.log(keys())
-console.log(values())
-console.log(entries())
-
-
