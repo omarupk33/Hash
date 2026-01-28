@@ -21,8 +21,8 @@ function hash(key){
 } 
   function hashSet(key, value){
 
-      if(capacity * load_factor < length()){
-      capacity = capacity*2
+    if(capacity * load_factor < length()){
+    updateCapacity()
     }
 
     let linked = new LinkedList()
@@ -90,7 +90,6 @@ function hash(key){
     }
 
     function keys(){
-
       let allKeys = []
       for(let linkedList of Object.values(bucket)){
         allKeys.push(...linkedList.keys())
@@ -112,7 +111,18 @@ function hash(key){
       return allEntries
     }
 
+    function updateCapacity(){
+    capacity = capacity * 2
+      let entries = []
+      for(let linkedList of Object.values(bucket)){
+        entries.push(...linkedList.entries())
+      }
+    bucket = {}
+    entries.forEach(pair => {
+      hashSet(pair[0], pair[1])
+    })
+    }
 
-   return {bucket, hashSet, has,removePair, capacity,
+   return {bucket, hashSet, has,removePair,
           get, length, keys, values, entries, clear}
  }

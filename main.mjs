@@ -16,15 +16,7 @@ test.hashSet('jacket', 'blue')
 test.hashSet('kite', 'pink')
 test.hashSet('lion', 'golden')
 
-// should delete old banana
 test.hashSet('banana', 'red')
 test.hashSet('moon', 'silver')
 test.hashSet('mn', 'silver')
-test.hashSet('banaa', 'red')
-test.hashSet('banahjfna', 'red')
-
-
-console.log(test.length())
-console.log(test.capacity)
-
 
